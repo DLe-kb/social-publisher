@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.venv/
+venv/
+.pytest_cache/
+.coverage
+dist/
+build/
+*.egg-info/
+
+# Credentials and local runtime state
+.env
+*.token.json
+client-secret*.json
+profiles/
+oauth/
+ledgers/
+runs/
+screenshots/

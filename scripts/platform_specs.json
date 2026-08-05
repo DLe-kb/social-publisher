@@ -1,0 +1,158 @@
+{
+  "bilibili": {
+    "display_name": "Bilibili",
+    "default_route": "external-biliup",
+    "free": true,
+    "login_url": "https://member.bilibili.com/",
+    "publish_url": "https://member.bilibili.com/platform/upload/video/frame"
+  },
+  "douyin": {
+    "display_name": "Douyin",
+    "default_route": "browser-local-free",
+    "free": true,
+    "login_url": "https://creator.douyin.com/",
+    "publish_url": "https://creator.douyin.com/creator-micro/content/upload",
+    "required_fields": ["title"],
+    "required_covers": ["vertical_3_4", "horizontal_4_3"],
+    "limits": {"title_max": 30, "description_max": 1000, "video_max_bytes": 4294967296},
+    "cover_limits": {
+      "vertical_3_4": {"min_width": 1080, "aspect_ratio": 0.75},
+      "horizontal_4_3": {"min_width": 1600, "aspect_ratio": 1.3333333333}
+    },
+    "selectors": {
+      "title": ["input[placeholder*='作品标题']", "input[placeholder*='标题']"],
+      "description": ["textarea[placeholder*='作品简介']", "div[contenteditable='true']"],
+      "topics": {
+        "trigger": ["text=#添加话题"],
+        "search": ["input[placeholder*='搜索话题']", "input[placeholder*='输入话题']", "input[placeholder*='话题']"],
+        "option": ["[role='option']", ".semi-select-option", "div[class*='topic']"]
+      },
+      "publish": ["xpath=//*[normalize-space(.)='发布' and not(.//*[normalize-space(.)='发布'])]"],
+      "publish_success": ["text=发布成功", "text=发布完成"],
+      "publish_error": ["text=发布失败", "text=上传失败"],
+      "upload_error": ["text=上传失败"],
+      "upload_pending": ["text=文件解析中，请稍等", "text=上传过程中请不要删除/移动文件"],
+      "cover_confirm": ["button:text-is('保存')"],
+      "cover_modal": ["text=设置竖封面", "text=设置横封面"],
+      "cover_missing": "text=选择封面",
+      "cover_workflow": {
+        "trigger": "text=选择封面",
+        "steps": [
+          {
+            "name": "vertical_3_4",
+            "input": [".semi-upload input[type='file']", "div[class*='upload-'] input[type='file']"],
+            "input_index": -1,
+            "upload": [".semi-upload:has-text('上传封面')"],
+            "action": ["text=设置横封面"],
+            "action_index": -1,
+            "action_name": "设置横封面按钮"
+          },
+          {
+            "name": "horizontal_4_3",
+            "input": [".semi-upload input[type='file']", "div[class*='upload-'] input[type='file']"],
+            "input_index": -1,
+            "upload": [".semi-upload:has-text('上传封面')"],
+            "action": ["text=完成"],
+            "action_index": -1,
+            "action_name": "封面完成按钮"
+          }
+        ]
+      },
+      "visibility": {
+        "private": ["label:has-text('仅自己可见')"],
+        "public": ["label:has-text('公开')"]
+      }
+    }
+  },
+  "xiaohongshu": {
+    "display_name": "Xiaohongshu",
+    "default_route": "browser-local-free",
+    "free": true,
+    "login_url": "https://creator.xiaohongshu.com/",
+    "publish_url": "https://creator.xiaohongshu.com/publish/publish?from=homepage&target=video",
+    "required_fields": ["title"],
+    "limits": {"title_max": 20, "description_max": 1000},
+    "selectors": {
+      "title": ["input[placeholder='填写标题会有更多赞哦']", "input[placeholder*='标题']"],
+      "description": ["div[contenteditable='true'][data-placeholder*='输入正文描述']", "div[contenteditable='true']", "textarea[placeholder*='正文']"],
+      "topics": {
+        "trigger": ["text=# 话题", "text=#话题", "text=话题"],
+        "search": ["input[placeholder*='搜索话题']", "input[placeholder*='输入话题']", "input[placeholder*='话题']"],
+        "option": ["[role='option']", ".semi-select-option", "div[class*='topic']"]
+      },
+      "publish": ["button:text-is('发布')"],
+      "publish_success": ["text=发布成功", "text=提交成功"],
+      "publish_error": ["text=发布失败", "text=上传失败"],
+      "upload_error": ["text=上传失败"],
+      "upload_pending": ["text=取消上传"],
+      "visibility_trigger": ["text=公开可见"],
+      "visibility": {
+        "private": ["text=仅自己可见"],
+        "public": ["text=公开可见"]
+      }
+    }
+  },
+  "wechat-channels": {
+    "display_name": "WeChat Channels",
+    "default_route": "browser-local-free",
+    "free": true,
+    "login_url": "https://channels.weixin.qq.com/",
+    "publish_url": "https://channels.weixin.qq.com/platform/post/create",
+    "required_fields": ["short_title"],
+    "limits": {"short_title_min": 6, "short_title_max": 16, "video_max_bytes": 21474836480, "duration_max_seconds": 28800, "min_width": 720, "max_video_bitrate": 10000000},
+    "selectors": {
+      "short_title": ["input[placeholder*='短标题']", "input[type='text']"],
+      "description": ["div.input-editor", "div[contenteditable='true']", "textarea[placeholder*='描述']"],
+      "publish": ["button:has-text('发表')", "button:has-text('发布')"],
+      "publish_success": ["text=发表成功", "text=发布成功"],
+      "publish_error": ["text=发表失败", "text=发布失败", "text=上传失败"],
+      "upload_error": ["text=上传失败"]
+    }
+  },
+  "youtube": {
+    "display_name": "YouTube",
+    "default_route": "youtube-data-api-free-quota",
+    "free": true,
+    "login_url": "https://studio.youtube.com/",
+    "publish_url": "https://studio.youtube.com/",
+    "required_fields": ["title", "made_for_kids"],
+    "limits": {"title_max": 100, "description_max": 5000, "tags_total_max": 500, "cover_min_width": 640, "cover_aspect_ratio": 1.7777777778},
+    "selectors": {
+      "title": ["#textbox[aria-label*='title' i]", "#textbox[aria-label*='标题']", "ytcp-social-suggestions-textbox#title-textarea #textbox"],
+      "description": ["#textbox[aria-label*='description' i]", "#textbox[aria-label*='说明']", "ytcp-social-suggestions-textbox#description-textarea #textbox"],
+      "tags": ["input[aria-label*='tag' i]", "input[aria-label*='标签']"],
+      "publish": ["#done-button", "button:has-text('保存')", "button:has-text('发布')"]
+    }
+  },
+  "x": {
+    "display_name": "X",
+    "default_route": "browser-local-free",
+    "free": true,
+    "login_url": "https://x.com/home",
+    "publish_url": "https://x.com/compose/post",
+    "required_fields": ["description"],
+    "limits": {"description_max": 280},
+    "selectors": {
+      "description": ["div[data-testid='tweetTextarea_0']", "div[role='textbox'][contenteditable='true']"],
+      "publish": ["button[data-testid='tweetButton']", "button[data-testid='tweetButtonInline']"],
+      "publish_success": ["div[data-testid='toast']:has-text('Your post was sent')", "div[data-testid='toast']:has-text('你的帖子已发送')"],
+      "publish_error": ["div[data-testid='toast']:has-text('Something went wrong')", "div[data-testid='toast']:has-text('出错了')"]
+    }
+  },
+  "tiktok": {
+    "display_name": "TikTok",
+    "default_route": "browser-local-free",
+    "free": true,
+    "login_url": "https://www.tiktok.com/tiktokstudio/upload",
+    "publish_url": "https://www.tiktok.com/tiktokstudio/upload",
+    "required_fields": ["description"],
+    "limits": {"description_max": 4000, "video_max_bytes": 32212254720, "duration_max_seconds": 3600, "min_width": 360, "max_width": 4096},
+    "selectors": {
+      "description": ["div[contenteditable='true']", "textarea[placeholder*='caption' i]", "textarea[placeholder*='描述']"],
+      "publish": ["button:has-text('Post')", "button:has-text('发布')"],
+      "publish_success": ["text=Your video has been uploaded", "text=Your video is being uploaded to TikTok", "text=发布成功", "text=上传成功"],
+      "publish_error": ["text=Couldn't upload", "text=Upload failed", "text=上传失败"],
+      "upload_error": ["text=Upload failed", "text=上传失败"]
+    }
+  }
+}

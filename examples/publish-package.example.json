@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "content_id": "demo-video-001",
+  "video": "./video.mp4",
+  "cover": "./cover.jpg",
+  "covers": {
+    "vertical_3_4": "./cover-vertical-3x4.jpg",
+    "horizontal_4_3": "./cover-horizontal-4x3.jpg"
+  },
+  "defaults": {
+    "title": "示例视频",
+    "description": "根据平台调整后的示例说明。",
+    "tags": ["示例"],
+    "visibility": "public"
+  },
+  "platforms": {
+    "douyin": {"title": "抖音示例标题", "description": "抖音示例说明"},
+    "xiaohongshu": {"title": "小红书示例", "description": "小红书示例正文"},
+    "wechat-channels": {"short_title": "视频号示例标题", "description": "视频号示例说明"},
+    "youtube": {
+      "title": "YouTube example",
+      "description": "YouTube example description",
+      "category_id": "22",
+      "made_for_kids": false,
+      "notify_subscribers": true,
+      "visibility": "private"
+    },
+    "x": {"description": "Example post for X"},
+    "tiktok": {"description": "TikTok example caption"}
+  }
+}

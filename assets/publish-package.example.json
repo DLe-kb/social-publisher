@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "content_id": "example-video-001",
+  "video": "./video.mp4",
+  "cover": "./cover.jpg",
+  "covers": {
+    "vertical_3_4": "./cover-vertical-3x4.jpg",
+    "horizontal_4_3": "./cover-horizontal-4x3.jpg"
+  },
+  "defaults": {
+    "title": "示例视频标题",
+    "description": "示例视频说明。",
+    "tags": ["示例", "视频"],
+    "visibility": "public"
+  },
+  "platforms": {
+    "douyin": {
+      "title": "抖音标题",
+      "description": "抖音版本说明",
+      "tags": ["抖音话题"]
+    },
+    "xiaohongshu": {
+      "title": "小红书标题",
+      "description": "小红书版本正文",
+      "tags": ["小红书话题"]
+    },
+    "wechat-channels": {
+      "short_title": "视频号短标题",
+      "description": "视频号版本说明"
+    },
+    "youtube": {
+      "title": "YouTube title",
+      "description": "YouTube description",
+      "tags": ["youtube", "video"],
+      "category_id": "22",
+      "made_for_kids": false,
+      "notify_subscribers": true,
+      "visibility": "private"
+    },
+    "x": {
+      "description": "Post text for X"
+    },
+    "tiktok": {
+      "description": "TikTok caption",
+      "tags": ["TikTok"]
+    }
+  }
+}

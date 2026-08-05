@@ -1,0 +1,33 @@
+name: Validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate repository
+        run: python scripts/validate_repo.py
+
+      - name: Validate Skill metadata
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          text = Path("SKILL.md").read_text(encoding="utf-8")
+          assert text.startswith("---\n")
+          assert "\nname: social-publisher\n" in text
+          assert "\ndescription:" in text
+          PY
+
+      - name: Run tests
+        run: python -m unittest discover -s tests -p "test_*.py"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Social Publisher"
+  short_description: "免费、本机优先、带人工授权的多平台视频发布 Skill"
+  default_prompt: "使用 $social-publisher 校验发布包，并准备发布到指定社媒平台。"
